@@ -16,12 +16,10 @@ module Undoable
   end
   
   def add_to_undo_stack
-    begin
-      undo_manager.beginUndoGrouping
-      yield undo_manager.prepareWithInvocationTarget(self)
+    undo_manager.beginUndoGrouping
+    yield undo_manager.prepareWithInvocationTarget(self)
     ensure
       undo_manager.endUndoGrouping
-    end
   end
 
 
